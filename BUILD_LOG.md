@@ -36,7 +36,7 @@ Image-to-video and reference-to-video variants exist at the same prices (animate
 
 ### Honest scope of this V1
 
-- Shipped: the frozen-agent design (`agent/prompt.md`), the camera-move presets as open prompts (`presets/`), a thin CLI (`client/`), and this log. The agent IS the engine - one `run_model` per clip, no discovery at runtime.
+- Shipped: the frozen-agent design (`agent/prompt.md`), the camera-move presets as open prompts (`presets/`), the one-paste build prompt (`BUILD_PROMPT.md`), and this log. The thin CLI is designed but not in the repo yet. The agent IS the engine - one `run_model` per clip, no discovery at runtime.
 - Not shipped (yet): a full desktop studio UI and a one-click viral-VFX library on Higgsfield's scale. Their studio polish and their own DoP model are a real edge - we do not claim to out-polish them. We claim you can **own the same frontier models + editable presets at ~$0.20-0.50/clip** instead of renting them monthly.
 - Balance-delta billing is unreliable here: the FlyMy.AI wallet is a shared team account with scheduled agents running, so per-clip cost is taken from the model's catalog rate (billed to the key), not a wallet diff.
 

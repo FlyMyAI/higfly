@@ -15,7 +15,7 @@ Set it up on MY FlyMyAI account using the FlyMyAI MCP tools:
 2. Run it ONCE with prompt "a lone astronaut at the edge of a red desert canyon,
    golden hour" and preset "crash-zoom". Verify it returns a real .mp4 URL, then
    freeze it.
-3. Tell me the frozen agent id and how to render a clip from the CLI in client/.
+3. Tell me the frozen agent id and how to render another clip from it.
 Show me the real billed cost of that run via get_execution_price.
 ```
 

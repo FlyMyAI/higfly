@@ -1,71 +1,84 @@
-# higfly 🎬
+<img src="docs/higfly-mark.svg" alt="higfly - cinematic AI video" width="300">
 
-**We killed Higgsfield.** Cinematic AI video - camera moves, viral looks - built from **one prompt**, Claude as the builder, **FlyMy.AI cloud** as the backend.
+[![part of Build with FlyMy.AI](https://img.shields.io/badge/part%20of-Build%20with%20FlyMy.AI-b6ff3b?style=flat-square&labelColor=0b0d10)](https://github.com/FlyMyAI/build-with-flymyai)
+[![built on FlyMy.AI](https://img.shields.io/badge/built%20on-FlyMy.AI-b6ff3b?style=flat-square&labelColor=0b0d10)](https://flymy.ai/media)
+[![cost per clip](https://img.shields.io/badge/cost-~%240.20--0.50%20per%20clip-b6ff3b?style=flat-square&labelColor=0b0d10)](BUILD_LOG.md)
+[![no subscription](https://img.shields.io/badge/subscription-none-b6ff3b?style=flat-square&labelColor=0b0d10)](#why-it-exists)
+[![license MIT](https://img.shields.io/badge/license-MIT-b6ff3b?style=flat-square&labelColor=0b0d10)](LICENSE)
 
-- **Open**: Higgsfield's "camera presets" are just prompts. Ours ship as plain text you own and edit ([`presets/`](presets/)) - no locked studio, no account required to read them. Your keys, your storage, the agent is a forkable template.
-- **Cheap**: no subscription, no expiring credits. **Pay-per-clip** on the same frontier models Higgsfield resells (Seedance 2.0, Veo 3.1, Kling) - **~$0.20-0.50 a clip** on our real bill vs their **$5-99/mo** credit plans that reset monthly.
+**Cinematic AI video - camera moves, viral looks - as one open recipe.** Type a shot, pick a camera move, get a clip. **~$0.20-0.50 per clip**, no subscription, no expiring credits.
 
-## Higgsfield, honestly
+Built in a single session: **Claude as the brain, [FlyMy.AI](https://flymy.ai/media) as the infra.**
 
-Higgsfield is a **$1.3B** company. What it sells is real - a slick studio, one-click viral VFX, director-grade presets. But under the hood it **aggregates the same frontier video models** (Sora, Veo 3.1, Kling, **Seedance 2.0**, WAN) and wraps them in camera-move prompts, then bills a subscription with credits that expire. **FlyMy.AI hosts those same models.** So higfly calls them directly, keeps the camera moves as open prompt templates, and you pay per clip instead of per month.
-
-## How we did it
-
-```mermaid
-flowchart LR
-    U(["🧑‍💻 you type a shot<br/>+ pick a <b>camera move</b>"]) --> APP
-
-    subgraph APP["📝 higfly recipe (agent + presets)"]
-        P["prompt + preset<br/>from presets/"]
-    end
-
-    APP -->|shot| CLOUD
-    subgraph CLOUD["☁️ FlyMy.AI cloud agent — the engine"]
-        M["pick best video model →<br/>Seedance / Veo / Kling → render"]
-    end
-
-    CLOUD --> OUT(["🎞️ a cinematic clip<br/>your storage · <b>~$0.20-0.50</b>"])
-
-    classDef you fill:#0b7285,stroke:#0b7285,color:#fff;
-    classDef app fill:#5f3dc4,stroke:#5f3dc4,color:#fff;
-    classDef cloud fill:#1864ab,stroke:#1864ab,color:#fff;
-    classDef out fill:#2b8a3e,stroke:#2b8a3e,color:#fff;
-    class U you; class P app; class M cloud; class OUT out;
+```
+your shot + a camera preset  ->  one frozen FlyMy.AI agent  ->  Seedance 2.0 / Veo 3.1 / Kling  ->  a clip in your storage
 ```
 
-One FlyMy.AI agent, frozen into a fixed pipeline, + open presets. The agent IS the engine - it renders on the right frontier model; the presets are the "Higgsfield magic" as editable text.
+## How it got built: one prompt in your terminal
 
-## Build it yourself
+<img src="docs/one-prompt.gif" alt="connect the FlyMy.AI MCP, type one prompt, the cloud hosts the agent" width="820">
 
-1. **Connect FlyMy.AI to your coding agent** - one line:
+Connect the MCP once, describe the app you want, and the agents are created, run and hosted in the FlyMy.AI cloud - you get back a frozen endpoint and the real bill. (Recreated from [BUILD_LOG.md](BUILD_LOG.md): same model, same $0.20 clip, same ~140s render.)
+
+## How it works
+
+1. You write a shot and pick a [camera move](presets/camera-moves.md).
+2. A frozen FlyMy.AI agent renders it on the right frontier video model.
+3. The clip lands in your storage, billed per clip to your own key.
+
+That is the whole product: **one frozen agent + presets you can read and edit.** No studio to log into, no credits to burn.
+
+## Try it in three steps
+
+1. **Connect FlyMy.AI to your coding agent:**
    ```bash
    claude mcp add --transport http flymyai https://mcp-agents.flymy.ai/mcp
    ```
    (claude.ai / Codex / Antigravity: add the same URL as an MCP connector, sign in with [flymy.ai](https://app.flymy.ai).)
-2. **Paste one prompt** from [BUILD_PROMPT.md](BUILD_PROMPT.md) - it clones this repo, creates YOUR agent, renders a clip, and shows you the real bill.
-3. **Make a shot.** Done.
+2. **Paste the prompt** from [BUILD_PROMPT.md](BUILD_PROMPT.md) - it creates the agent on *your* account, renders a clip and shows you the real bill.
+3. **Make a shot.**
 
-## Use it directly
+## Why it exists
 
-higfly V1 is a recipe you run on **your** account through the FlyMy.AI MCP - no binary to trust, no baked-in credentials:
-
-1. Create the agent from [agent/prompt.md](agent/prompt.md) on your account (one paste into your coding agent - it pins the model and the flymy-mcp tool).
-2. Render a shot: give it a prompt + a [camera-move preset](presets/camera-moves.md). The clip lands in your storage, billed to your key at **~$0.20-0.50/clip**.
-
-That's the whole product: one frozen agent + open presets. A standalone CLI and a desktop studio are on the roadmap (see [BUILD_LOG.md](BUILD_LOG.md) for what is and isn't shipped).
-
-## Numbers, receipts, dead ends
+Higgsfield is a **$1.3B** company and what it sells is real - a slick studio, one-click viral VFX, director-grade presets. But underneath it resells the **same frontier video models** (Sora, Veo 3.1, Kling, Seedance 2.0, WAN) wrapped in camera-move prompts, and bills a subscription whose credits expire. FlyMy.AI hosts those same models, so higfly calls them directly and ships the camera moves as open text.
 
 | | Higgsfield | higfly |
 |---|---|---|
-| Price | **$5-99/mo** credits (reset monthly, top-ups expire in 90 days) | **~$0.20-0.50 per clip, pay-per-use** - no subscription |
-| Models | Sora, Veo 3.1, Kling, Seedance 2.0, WAN - behind credits | the same frontier models, called directly |
-| Camera presets | in-app, locked | open prompt templates in [`presets/`](presets/), yours to edit |
-| Lock-in | account + monthly credits | your keys, your storage, forkable agent |
+| Price | **$5-99/mo** in credits (reset monthly, top-ups expire in 90 days) | **~$0.20-0.50 per clip**, pay-per-use |
+| Models | the frontier video models, behind credits | the same models, called directly |
+| Camera presets | in-app, locked | open text in [`presets/`](presets/), yours to edit |
+| Lock-in | account + monthly credits | your key, your storage, forkable agent |
 
-Quality, honestly: Higgsfield's studio polish, preset library and their own DoP model are a real edge - we don't claim to out-polish them. We claim you can **own the same frontier models + open presets at per-clip cost**, instead of renting them by the month.
+**Honestly:** their studio polish, preset library and their own DoP model are a real edge, and we do not claim to out-polish them. We claim you can own the same models and open presets at per-clip cost instead of renting them monthly.
 
-Full timestamped build history, real billed prices, and every dead end are in [BUILD_LOG.md](BUILD_LOG.md).
+## Built on FlyMy.AI
+
+<img src="docs/flymyai-media.png" alt="FlyMy.AI media demo stand" width="820">
+
+higfly took one session because none of the hard parts were ours to build: models, GPU capacity, storage, retries, versioning and billing all come with the platform. You teach an agent in plain text, freeze the run that worked into an API, and call it from your product - **infra on us.**
+
+The same recipe works on any product whose core feature is really a chain of model calls. higfly is simply the first one we shipped in the open:
+
+<img src="docs/on-the-landing.png" alt="higfly on the FlyMy.AI media landing" width="820">
+
+See the live demo stand and run an agent yourself: **[flymy.ai/media](https://flymy.ai/media)**
+
+## Part of Build with FlyMy.AI
+
+higfly is one demo in **[Build with FlyMy.AI](https://github.com/FlyMyAI/build-with-flymyai)** - a series where each app rebuilds a venture-funded product from a single prompt, with Claude as the builder and the FlyMy.AI agentic cloud as the backend, and publishes the real bill. The umbrella repo holds the shared playbook, the agent rules and the other demos:
+
+- **higfly** (you are here) - cinematic AI video, ~$0.20-0.50 a clip
+- [WhisperFly](https://github.com/FlyMyAI/whisperfly) - dictation straight into Notion, ~$0.03 a note
+- [replifly](https://github.com/FlyMyAI/replifly) - "deploy my code to prod" on your own accounts
+
+Want to build your own kill? Start with the [playbook](https://github.com/FlyMyAI/build-with-flymyai/blob/main/PLAYBOOK.md).
+
+## What is and is not shipped
+
+- **Shipped:** the frozen-agent design ([agent/prompt.md](agent/prompt.md)), the camera-move presets ([presets/](presets/)), the one-paste build prompt and the full build log.
+- **Not yet:** a standalone CLI and a desktop studio.
+
+Timestamped build history, real billed prices and every dead end: [BUILD_LOG.md](BUILD_LOG.md).
 
 ## License
 
