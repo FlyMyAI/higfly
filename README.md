@@ -6,19 +6,27 @@
 [![no subscription](https://img.shields.io/badge/subscription-none-b6ff3b?style=flat-square&labelColor=0b0d10)](#why-it-exists)
 [![license MIT](https://img.shields.io/badge/license-MIT-b6ff3b?style=flat-square&labelColor=0b0d10)](LICENSE)
 
-**Cinematic AI video - camera moves, viral looks - as one open recipe.** Type a shot, pick a camera move, get a clip. **~$0.20-0.50 per clip**, no subscription, no expiring credits.
+**higfly is a working Higgsfield: you type a shot, pick a camera move, and a cinematic clip comes back - for ~$0.20-0.50 a clip instead of a monthly plan.** It exists because nobody built the hard part. The entire AI backend behind it - which video model to use, how to chain the render, where it runs - was *described in plain text* on [FlyMy.AI](https://flymy.ai/media), assembled into an agent, frozen into an API and hosted there, in one sitting. No GPUs rented, no provider accounts, no pipeline code, no deploy. That is the real headline here: **a full-featured clone of a $1.3B product is now an afternoon of typing** - and the same infrastructure is sitting there for whatever you want to rebuild next.
 
-Built in a single session: **Claude as the brain, [FlyMy.AI](https://flymy.ai/media) as the infra.**
+Here is the whole build, verbatim - paste it into a coding agent with the FlyMy.AI MCP connected:
+
+```text
+Claude, build me a Higgsfield-style video studio: a landing page where a user
+types a shot and picks a camera move, and on FlyMy.AI a set of agents that
+render it. Camera moves I want: 1) crash zoom, 2) dolly in, 3) orbit around
+the subject, 4) crane up reveal, 5) FPV drone flythrough, 6) handheld follow.
+Pick the best video model for cost and quality, freeze the working agent into
+an API, host it there and hand me the endpoint plus the real price per clip.
+Go.
+```
+
+<img src="docs/one-prompt.gif" alt="connect the FlyMy.AI MCP, type one prompt, the cloud hosts the agent" width="820">
+
+That is it: connect the MCP once, say what you want, and the agents are created, run, frozen and hosted in the FlyMy.AI cloud - you get back an endpoint and the real bill. (The run above is recreated from [BUILD_LOG.md](BUILD_LOG.md): same model, same $0.20 clip, same ~140s render.)
 
 ```
 your shot + a camera preset  ->  one frozen FlyMy.AI agent  ->  Seedance 2.0 / Veo 3.1 / Kling  ->  a clip in your storage
 ```
-
-## How it got built: one prompt in your terminal
-
-<img src="docs/one-prompt.gif" alt="connect the FlyMy.AI MCP, type one prompt, the cloud hosts the agent" width="820">
-
-Connect the MCP once, describe the app you want, and the agents are created, run and hosted in the FlyMy.AI cloud - you get back a frozen endpoint and the real bill. (Recreated from [BUILD_LOG.md](BUILD_LOG.md): same model, same $0.20 clip, same ~140s render.)
 
 ## How it works
 
