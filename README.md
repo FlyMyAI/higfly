@@ -6,7 +6,11 @@
 [![no subscription](https://img.shields.io/badge/subscription-none-b6ff3b?style=flat-square&labelColor=0b0d10)](#why-it-exists)
 [![license MIT](https://img.shields.io/badge/license-MIT-b6ff3b?style=flat-square&labelColor=0b0d10)](LICENSE)
 
-**higfly is a working Higgsfield: you type a shot, pick a camera move, and a cinematic clip comes back - for ~$0.20-0.50 a clip instead of a monthly plan.** It exists because nobody built the hard part. The entire AI backend behind it - which video model to use, how to chain the render, where it runs - was *described in plain text* on [FlyMy.AI](https://flymy.ai/media), assembled into an agent, frozen into an API and hosted there, in one sitting. No GPUs rented, no provider accounts, no pipeline code, no deploy. That is the real headline here: **a full-featured clone of a $1.3B product is now an afternoon of typing** - and the same infrastructure is sitting there for whatever you want to rebuild next.
+**We rebuilt the core of Higgsfield, a $1.3B company, from ~one prompt - and the infra it runs on is live at [flymy.ai/media](https://flymy.ai/media/).**
+
+higfly makes cinematic clips: type a shot, pick a camera move, get a video. **~$0.20-0.50 per clip** instead of $5-99 a month in credits that expire. The camera presets are plain text you can read, fork and change.
+
+Nobody wrote a pipeline. FlyMy.AI is text-programmable AI infrastructure: you describe the AI backend in plain words, and it gets built, frozen into an API and hosted for you in minutes. No GPUs to rent, no provider accounts, no deploy. The same infra is sitting there for whatever you want to build.
 
 Here is the whole build, verbatim - paste it into a coding agent with the FlyMy.AI MCP connected:
 
